@@ -6,7 +6,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
@@ -89,6 +89,15 @@ syntezator zainstalowany w systemie.
 %setup -q
 #%%patch100 -p1
 
+for f in `find . -name *.desktop | xargs grep -l '^Terminal=0'`; do
+	%{__sed} -i -e 's/^Terminal=0/Terminal=false/' $f
+done
+for f in `find . -name *.desktop | xargs grep -l '^Type=Application'`; do
+	if ! grep '^Encoding=' $f >/dev/null; then
+		%{__sed} -i -e '/\[Desktop Entry\]/aEncoding=UTF-8' $f
+	fi
+done
+
 %build
 cp %{_datadir}/automake/config.sub admin
 export kde_htmldir=%{_kdedocdir}
@@ -118,7 +127,6 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 %files kmag
 %defattr(644,root,root,755)
