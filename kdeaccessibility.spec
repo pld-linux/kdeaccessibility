@@ -3,7 +3,7 @@
 %bcond_without	i18n	# don't build i18n subpackage
 #
 %define		_state		stable
-%define		_ver		3.2.1
+%define		_ver		3.2.2
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -14,10 +14,10 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	3a6215b9b3b7a1d7bb6e51863066a61e
+# Source0-md5:	26179a0315123a72949a5981f5d4beb3
 %if %{with i18n}
 Source1:        kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	fa15c2b609cea1eaac99e2a5d6964703
+# Source1-md5:	7407b540acd99099385c4b2101547d8e
 %endif
 # Patch0:		%{name}-3.2branch.diff
 URL:		http://www.kde.org/
