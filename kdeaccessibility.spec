@@ -12,9 +12,9 @@ Version:	%{_ver}
 Release:	2
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	97466b78dcee2d29505937c79919713d
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	3a6215b9b3b7a1d7bb6e51863066a61e
 %if %{with i18n}
 Source1:        kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	fa15c2b609cea1eaac99e2a5d6964703
