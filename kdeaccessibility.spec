@@ -184,6 +184,9 @@ rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	kttsd	-p /sbin/ldconfig
+%postun	kttsd	-p /sbin/ldconfig
+
 %files -n kde-icons-mono
 %defattr(644,root,root,755)
 %{_iconsdir}/mono
