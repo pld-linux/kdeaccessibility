@@ -4,7 +4,11 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040227
+%define		_snap		040511
+%define		_packeager	adgor
+
+%define		_minlibsevr	9:3.2.90.040508
+%define		_minbaseevr	9:3.2.90.040508
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -14,12 +18,12 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
 ##%% Source0-md5:	97466b78dcee2d29505937c79919713d
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	cb5057c35fc76fa96057e166fa62226b
 URL:		http://www.kde.org/
-BuildRequires:	kdelibs-devel >= 9:%{version}
+BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	unsermake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,7 +38,7 @@ U³atwienia dostêpu dla KDE.
 Summary:	A KDE magnifying tool
 Summary(pl):	Lupa dla ¶rodowiska KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmag
 A KDE magnifying tool.
@@ -46,7 +50,7 @@ Lupa dla ¶rodowiska KDE.
 Summary:	MouseTool - a program that clicks the mouse for you
 Summary(pl):	MouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmousetool
 MouseTool is a program that clicks the mouse for you.
@@ -59,7 +63,7 @@ przycisków.
 Summary:	A frontend for speech synthesizers
 Summary(pl):	Frontend do syntezatorów mowy
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmouth
 A frontend for speech synthesizers.
@@ -120,13 +124,10 @@ Internationalization and localization files for kmouth.
 Pliki umiêdzynarodawiaj±ce dla kmouth.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{_snap}
 
 %build
 cp /usr/share/automake/config.sub admin
-
-export kde_htmldir=%{_kdedocdir}
-
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
@@ -143,7 +144,8 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir}
 
 %if %{with i18n}
 if [ -f "%{SOURCE1}" ] ; then
