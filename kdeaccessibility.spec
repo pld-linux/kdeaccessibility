@@ -1,25 +1,26 @@
-#
-%define		_state		stable
-%define		_ver		3.2.3
+
+%define		_state		unstable
+%define		_ver		3.3.0
+%define		_snap		rc2
+
+%define		_minlibsevr	9:3.3.0
+%define		_minbaseevr	9:3.3.0
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	2
+Release:	0.%{_snap}.1
 License:	GPL
 Group:		X11/Applications
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	18a949124ff7f5ba8c7e7d107d8ec794
 Icon:		kde-access.xpm
-# Patch100:		%{name}-branch.diff
+# Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+# Source0-md5:	f333e22ee5c700cb487d91457f789304
 URL:		http://www.kde.org/
-BuildRequires:	autoconf
-BuildRequires:	unsermake >= 040511
-BuildRequires:	automake
-BuildRequires:	kdelibs-devel >= 9:%{version}
+BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,7 +33,7 @@ U³atwienia dostêpu dla KDE.
 Summary:	A KDE magnifying tool
 Summary(pl):	Lupa dla ¶rodowiska KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmag
 A KDE magnifying tool.
@@ -44,7 +45,7 @@ Lupa dla ¶rodowiska KDE.
 Summary:	KMouseTool - a program that clicks the mouse for you
 Summary(pl):	KMouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmousetool
 KMouseTool is a program that clicks the mouse for you. KMouseTool
@@ -65,7 +66,7 @@ pewnej praktyki.
 Summary:	A frontend for speech synthesizers
 Summary(pl):	Frontend do syntezatorów mowy
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmouth
 KMouth is a frontend for speech synthesizers. It is a program that
@@ -87,28 +88,18 @@ syntezator zainstalowany w systemie.
 
 %prep
 %setup -q
-#%%patch100 -p1
-
-for f in `find . -name *.desktop | xargs grep -l '^Terminal=0'`; do
-	%{__sed} -i -e 's/^Terminal=0/Terminal=false/' $f
-done
-for f in `find . -name *.desktop | xargs grep -l '^Type=Application'`; do
-	if ! grep '^Encoding=' $f >/dev/null; then
-		%{__sed} -i -e '/\[Desktop Entry\]/aEncoding=UTF-8' $f
-	fi
-done
 
 %build
-cp %{_datadir}/automake/config.sub admin
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
-	--with-qt-libraries=%{_libdir} \
-	--enable-final
+	--enable-final \
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
@@ -117,38 +108,40 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
 mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde
 
+%find_lang kmag		--with-kde
+%find_lang kmousetool	--with-kde
+%find_lang kmouth	--with-kde
+
+rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files kmag
+%files kmag -f kmag.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmag
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
 %{_iconsdir}/[!l]*/*/apps/kmag.png
-%{_kdedocdir}/en/kmag
 
-%files kmousetool
+%files kmousetool -f kmousetool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmousetool
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
 %{_iconsdir}/[!l]*/*/apps/kmousetool.png
-%{_kdedocdir}/en/kmousetool
 
-%files kmouth
+%files kmouth -f kmouth.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmouth
 %{_datadir}/apps/kmouth
 %{_datadir}/config/kmouthrc
 %{_desktopdir}/kde/kmouth.desktop
 %{_iconsdir}/[!l]*/*/apps/kmouth.png
-%{_kdedocdir}/en/kmouth
