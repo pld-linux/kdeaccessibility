@@ -1,28 +1,27 @@
 #
 # Conditional build:
-%bcond_without	i18n	# don't build i18n subpackage
+%bcond_with	i18n	# w/wo i18n subpackages
 #
-%define		_state		stable
-%define		_ver		3.2.0
+%define		_state		snapshots
+%define		_ver		3.2.90
+%define		_snap		040213
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	%{_ver}
-Release:	2
+Version:	%{_ver}.%{_snap}
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-# Source0-md5:	97466b78dcee2d29505937c79919713d
-%if %{with i18n}
-Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	cb5057c35fc76fa96057e166fa62226b
-%endif
-Patch0:		%{name}-3.2branch.diff
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}.tar.bz2
+##%% Source0-md5:	97466b78dcee2d29505937c79919713d
+#Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
+##%% Source1-md5:	cb5057c35fc76fa96057e166fa62226b
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -121,17 +120,19 @@ Internationalization and localization files for kmouth.
 Pliki umiêdzynarodawiaj±ce dla kmouth.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n %{name}
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
-	--with-qt-libraries=%{_libdir} \
-	--enable-final
+	--enable-final \
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
@@ -169,9 +170,10 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang desktop_kdeaccessibility	--with-kde
 %endif
 
-files="kmag \
-kmousetool \
-kmouth"
+files="\
+	kmag \
+	kmousetool \
+	kmouth"
 
 for i in $files; do
 	> ${i}_en.lang
