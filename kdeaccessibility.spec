@@ -5,7 +5,7 @@ Version:	3.1.91
 Release:	0.1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/%{version}/src/%{name}-%{version}.tar.bz2
 #%% Source0-md5:	573d6d12bf5fc7f9a26de3cc0560ecf8
 Patch0:		%{name}-vcategories.patch
 BuildRequires:	kdelibs-devel >= 9:%{version}
