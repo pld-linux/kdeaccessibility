@@ -22,9 +22,9 @@ Accessibility support for KDE.
 U³atwienia dostêpu dla KDE.
 
 %package kmag
-Summary:        A KDE magnifying tool
-Summary(pl):    Lupa dla ¶rodowiska KDE
-Group:          X11/Applications
+Summary:	A KDE magnifying tool
+Summary(pl):	Lupa dla ¶rodowiska KDE
+Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmag
@@ -34,9 +34,9 @@ A KDE magnifying tool.
 Lupa dla ¶rodowiska KDE.
 
 %package kmousetool
-Summary:        MouseTool - a program that clicks the mouse for you
-Summary(pl):    MouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
-Group:          X11/Applications
+Summary:	MouseTool - a program that clicks the mouse for you
+Summary(pl):	MouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
+Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmousetool
@@ -47,9 +47,9 @@ MouseTool to narzêdzie do klikania myszk± bez naciskania jej
 przycisków.
 
 %package kmouth
-Summary:        A frontend for speech synthesizers
-Summary(pl):    Frontend do syntezatorów mowy
-Group:          X11/Applications
+Summary:	A frontend for speech synthesizers
+Summary(pl):	Frontend do syntezatorów mowy
+Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmouth
