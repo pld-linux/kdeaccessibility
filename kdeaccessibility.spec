@@ -1,6 +1,6 @@
 
-%define		_ver	3.1.93
-%define		_snap	031114
+%define		_ver	3.1.94
+%define		_snap	031204
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -75,12 +75,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
-mv $RPM_BUILD_ROOT%{_applnkdir}/Applications/* \
+mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde
 
 %find_lang kmag		--with-kde
