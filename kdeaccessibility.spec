@@ -1,25 +1,30 @@
+#
+# TODO:
+# - fix festival and speech_tools
 
 %define		_state		stable
-%define		_ver		3.3.2
+%define		_ver		3.4.0
 
-%define		_minlibsevr	9:3.3.2
-%define		_minbaseevr	9:3.3.2
+%define		_minlibsevr	9:3.4.0
+%define		_minbaseevr	9:3.4.0
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	2d1fc370ce1e6a58c82d4dc283ee206d
-#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+# Source0-md5:	274bd9335219f0fefb6fdc4a17891cf7
 URL:		http://www.kde.org/
+BuildRequires:	festival-devel
+BuildRequires:	gstreamer-plugins-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake >= 040511
+BuildRequires:	speech_tools-devel
+#BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -27,6 +32,42 @@ Accessibility support for KDE.
 
 %description -l pl
 U³atwienia dostêpu dla KDE.
+
+%package devel
+Summary:	Accessibility support for KDE - header files
+Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
+Group:		X11/Applications
+Requires:	kdelibs-devel = %{_minlibsver}
+
+%description devel
+Accessibility support for KDE - header files.
+
+%description devel -l pl
+U³atwienia dostêpu dla KDE - pliki nag³ówkowe.
+
+%package -n kde-icons-mono
+Summary:	KDE Icons Theme - mono
+Summary(pl):	Motyw ikon dla KDE - mono
+Group:		X11/Amusements
+Requires:	kdelibs >= %{_minlibsevr}
+
+%description -n kde-icons-mono
+KDE Icons Theme - mono.
+
+%description -n kde-icons-mono -l pl
+Motyw ikon dla KDE - mono.
+
+%package kbstateapplet
+Summary:	Keyboard Status Applet
+Summary(pl):	Aplet stanu klawiatury
+Group:		X11/Applications
+Requires:	kdebase-desktop >= %{_minbaseevr}
+
+%description kbstateapplet
+Keyboard Status Applet.
+
+%description kbstateapplet -l pl
+Aplet stanu klawiatury.
 
 %package kmag
 Summary:	A KDE magnifying tool
@@ -85,7 +126,50 @@ zdanie do ponownego wypowiedzenia.
 UWAGA! KMouth nie zawiera syntezatora mowy. Zamiast tego wykorzystuje
 syntezator zainstalowany w systemie.
 
+%package ksayit
+Summary:	KSayIt - A Text To Speech frontend for KDE
+Summary(pl):	KSayIt - Frontend systemu Tekst-w-Mowê KDE
+Group:		X11/Applications
+Requires:	kdeaccessibility-kttsd = %{epoch}:%{version}-%{release}
+
+%description ksayit
+A Text To Speech frontend for KDE.
+
+%description ksayit -l pl
+Frontend systemu Tekst-w-Mowê KDE.
+
+%package kttsd
+Summary:	KDE Text-to-Speech
+Summary(pl):	KDE Tekst-w-Mowê
+Group:		X11/Applications
+Requires:	kdelibs >= %{_minlibsevr}
+
+%description kttsd
+KTTS -- KDE Text-to-Speech -- is a subsystem within the KDE desktop
+for conversion of text to audible speech. KTTS is currently under
+development and aims to become the standard subsystem for all KDE
+applications to provide speech output.
+
+%description kttsd -l pl
+KTTS -- KDE Tekst-w-Mowê -- jest podsystemem ¶rodowiska KDE s³u¿±cym
+do konwersji tekstu w s³yszaln± mowê. KTTS jest ca³y czas rozwijany,
+jego celem jest zostanie standardowym podsystemem dostarczaj±cym
+wyj¶cie mowy dla wszystkich aplikacji KDE.
+
+%package kttsd-gstreamer
+Summary:	KTTS GStreamer plugin
+Summary(pl):	Wtyczka Gstreamer dla KTTS
+Group:		X11/Applications
+Requires:	kdeaccessibility-kttsd = %{epoch}:%{version}-%{release}
+
+%description kttsd-gstreamer
+KTTS GStreamer plugin.
+
+%description kttsd-gstreamer -l pl
+Wtyczka Gstreamer dla KTTS.
+
 %prep
+#%setup -q -n %{name}-%{_snap}
 %setup -q
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -97,14 +181,16 @@ syntezator zainstalowany w systemie.
 
 %build
 cp /usr/share/automake/config.sub admin
-
-export UNSERMAKE=/usr/share/unsermake/unsermake
+#export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
 	--enable-final \
+	--enable-kttsd-festival \
+	--enable-kttsd-festivalcs \
+	--enable-kttsd-gstreamer \
 	--with-qt-libraries=%{_libdir} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
@@ -128,25 +214,48 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang kmag		--with-kde
 %find_lang kmousetool	--with-kde
 %find_lang kmouth	--with-kde
+%find_lang kttsd	--with-kde
 
 rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	kttsd	-p /sbin/ldconfig
+%postun	kttsd	-p /sbin/ldconfig
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/kparts/kttsjobmgr.h
+%{_includedir}/ksayit_fxplugin.h
+
+%files -n kde-icons-mono
+%defattr(644,root,root,755)
+%{_iconsdir}/mono
+%exclude %{_iconsdir}/mono/*/apps/kmag.*
+%exclude %{_iconsdir}/mono/*/apps/kmousetool.*
+%exclude %{_iconsdir}/mono/*/apps/kmouth.*
+
+%files kbstateapplet
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kbstate_panelapplet.la
+%attr(755,root,root) %{_libdir}/kde3/kbstate_panelapplet.so
+%{_datadir}/apps/kbstateapplet
+%{_datadir}/apps/kicker/applets/kbstateapplet.desktop
+
 %files kmag -f kmag.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmag
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
-%{_iconsdir}/[!l]*/*/apps/kmag.png
+%{_iconsdir}/[!l]*/*/apps/kmag.*
 
 %files kmousetool -f kmousetool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmousetool
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
-%{_iconsdir}/[!l]*/*/apps/kmousetool.png
+%{_iconsdir}/[!l]*/*/apps/kmousetool.*
 
 %files kmouth -f kmouth.lang
 %defattr(644,root,root,755)
@@ -154,4 +263,63 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kmouth
 %{_datadir}/config/kmouthrc
 %{_desktopdir}/kde/kmouth.desktop
-%{_iconsdir}/[!l]*/*/apps/kmouth.png
+%{_iconsdir}/[!l]*/*/apps/kmouth.*
+
+%files ksayit
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/ksayit
+%{_desktopdir}/kde/ksayit.desktop
+%{_datadir}/apps/ksayit
+%{_iconsdir}/*/*/*/ksayit*
+
+%files kttsd -f kttsd.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kttsd
+%attr(755,root,root) %{_bindir}/kttsmgr
+%{_libdir}/kde3/kcm_kttsd.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_kttsd.so
+%{_libdir}/kde3/ktexteditor_kttsd.la
+%attr(755,root,root) %{_libdir}/kde3/ktexteditor_kttsd.so
+%{_libdir}/kde3/libkttsd_artsplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_artsplugin.so
+%{_libdir}/kde3/libkttsd_commandplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_commandplugin.so
+%{_libdir}/kde3/libkttsd_eposplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_eposplugin.so
+%{_libdir}/kde3/libkttsd_festivalintplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalintplugin.so
+%{_libdir}/kde3/libkttsd_fliteplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_fliteplugin.so
+%{_libdir}/kde3/libkttsd_freettsplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_freettsplugin.so
+%{_libdir}/kde3/libkttsd_hadifixplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_hadifixplugin.so
+%{_libdir}/kde3/libkttsd_sbdplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_sbdplugin.so
+%{_libdir}/kde3/libkttsd_stringreplacerplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_stringreplacerplugin.so
+%{_libdir}/kde3/libkttsd_talkerchooserplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_talkerchooserplugin.so
+%{_libdir}/kde3/libkttsd_xmltransformerplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_xmltransformerplugin.so
+%{_libdir}/kde3/libkttsjobmgrpart.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsjobmgrpart.so
+%{_libdir}/libKTTSD_Lib.la
+%attr(755,root,root) %{_libdir}/libKTTSD_Lib.so.*.*.*
+%{_libdir}/libkttsd.la
+%attr(755,root,root) %{_libdir}/libkttsd.so.*.*.*
+%{_desktopdir}/kde/kcmkttsd.desktop
+%{_desktopdir}/kde/kttsmgr.desktop
+%{_datadir}/apps/ktexteditor_kttsd
+%{_datadir}/apps/kttsd
+%{_datadir}/apps/kttsjobmgr
+%{_datadir}/services/*ktts*.desktop
+%{_datadir}/servicetypes/*ktts*.desktop
+%{_iconsdir}/*/*/*/kttsd.*
+%{_iconsdir}/*/*/*/female.*
+%{_iconsdir}/*/*/*/male.*
+
+%files kttsd-gstreamer
+%defattr(644,root,root,755)
+%{_libdir}/kde3/libkttsd_gstplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_gstplugin.so
