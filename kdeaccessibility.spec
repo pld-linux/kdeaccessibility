@@ -40,7 +40,6 @@ Summary:	Accessibility support for KDE - header files
 Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
 Group:		X11/Applications
 Requires:	kdelibs-devel = %{_minlibsver}
-Obsoletes:	kttsd-devel
 
 %description devel
 Accessibility support for KDE - header files.
