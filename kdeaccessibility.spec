@@ -1,28 +1,25 @@
 #
 # TODO:
-# - include files
-# - kbstateapplet
 # - fix festival and speech_tools
-#
 
 %define		_state		unstable
 %define		_ver		3.3.92
-%define		_snap		040703
+%define		_snap		050217
 
-%define		_minlibsevr	9:3.3.92
-%define		_minbaseevr	9:3.3.92
+%define		_minlibsevr	9:3.3.92.050217
+%define		_minbaseevr	9:3.3.92.050217
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	%{_ver}
-#Version:	%{_ver}.%{_snap}
+Version:	%{_ver}.%{_snap}
+#Version:	%{_ver}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d81bd9b7406a6c1e4325906a0af5b885
-#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
+#%% Source0-md5:	d81bd9b7406a6c1e4325906a0af5b885
 Patch0:		%{name}-kttsjobmgr.patch
 URL:		http://www.kde.org/
 BuildRequires:	festival-devel
@@ -30,7 +27,7 @@ BuildRequires:	gstreamer-plugins-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	speech_tools-devel
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,6 +35,18 @@ Accessibility support for KDE.
 
 %description -l pl
 U³atwienia dostêpu dla KDE.
+
+%package devel
+Summary:	Accessibility support for KDE - header files
+Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
+Group:		X11/Applications
+Requires:	kdelibs-devel = %{_minlibsver}
+
+%description devel
+Accessibility support for KDE - header files.
+
+%description devel -l pl
+U³atwienia dostêpu dla KDE - pliki nag³ówkowe.
 
 %package -n kde-icons-mono
 Summary:	KDE Icons Theme - mono
@@ -50,6 +59,18 @@ KDE Icons Theme - mono.
 
 %description -n kde-icons-mono -l pl
 Motyw ikon dla KDE - mono.
+
+%package kbstateapplet
+Summary:	Keyboard Status Applet
+Summary(pl):	Aplet stanu klawiatury
+Group:		X11/Applications
+Requires:	kdebase-desktop >= %{_minbaseevr}
+
+%description kbstateapplet
+Keyboard Status Applet.
+
+%description kbstateapplet -l pl
+Aplet stanu klawiatury.
 
 %package kmag
 Summary:	A KDE magnifying tool
@@ -151,8 +172,10 @@ KTTS GStreamer plugin.
 Wtyczka Gstreamer dla KTTS.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+#%setup -q
 %patch0 -p1
+
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	kmouth/kmouth.desktop
@@ -207,12 +230,24 @@ rm -rf $RPM_BUILD_ROOT
 %post	kttsd	-p /sbin/ldconfig
 %postun	kttsd	-p /sbin/ldconfig
 
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/kparts/kttsjobmgr.h
+%{_includedir}/ksayit_fxplugin.h
+
 %files -n kde-icons-mono
 %defattr(644,root,root,755)
 %{_iconsdir}/mono
 %exclude %{_iconsdir}/mono/*/apps/kmag.*
 %exclude %{_iconsdir}/mono/*/apps/kmousetool.*
 %exclude %{_iconsdir}/mono/*/apps/kmouth.*
+
+%files kbstateapplet
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kbstate_panelapplet.la
+%attr(755,root,root) %{_libdir}/kde3/kbstate_panelapplet.so
+%{_datadir}/apps/kbstateapplet
+%{_datadir}/apps/kicker/applets/kbstateapplet.desktop
 
 %files kmag -f kmag.lang
 %defattr(644,root,root,755)
@@ -257,8 +292,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_commandplugin.so
 %{_libdir}/kde3/libkttsd_eposplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_eposplugin.so
-%{_libdir}/kde3/libkttsd_festivalcsplugin.la
-%attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalcsplugin.so
 %{_libdir}/kde3/libkttsd_festivalintplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalintplugin.so
 %{_libdir}/kde3/libkttsd_fliteplugin.la
