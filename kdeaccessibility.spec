@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	i18n	# don't build i18n subpackage
+%bcond_without	i18n	# don't build i18n subpackages
 #
 %define		_state		stable
 %define		_ver		3.2.2
@@ -68,24 +68,12 @@ A frontend for speech synthesizers.
 %description kmouth -l pl
 Frontend do syntezatorów mowy.
 
-%package i18n
-Summary:	Common internationalization and localization files for kdeaccessibility
-Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeaccessibility
-Group:		X11/Applications
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description i18n
-Common internationalization and localization files for kdeaccessibility.
-
-%description i18n -l pl
-Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeaccessibility.
-
-
 %package kmag-i18n
 Summary:	Internationalization and localization files for kmag
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmag
 Group:		X11/Applications
 Requires:	%{name}-kmag = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kmag-i18n
 Internationalization and localization files for kmag.
@@ -98,6 +86,7 @@ Summary:	Internationalization and localization files for kmousetool
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmousetool
 Group:		X11/Applications
 Requires:	%{name}-kmousetool = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kmousetool-i18n
 Internationalization and localization files for kmousetool.
@@ -110,6 +99,7 @@ Summary:	Internationalization and localization files for kmouth
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmouth
 Group:		X11/Applications
 Requires:	%{name}-kmouth = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kmouth-i18n
 Internationalization and localization files for kmouth.
