@@ -9,7 +9,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	2
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
