@@ -9,7 +9,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
@@ -19,6 +19,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	cb5057c35fc76fa96057e166fa62226b
 %endif
+Patch0:		%{name}-3.2branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -121,6 +122,7 @@ Pliki umiêdzynarodawiaj±ce dla kmouth.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
