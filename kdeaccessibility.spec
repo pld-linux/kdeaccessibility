@@ -9,7 +9,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
@@ -86,7 +86,6 @@ Summary:	Internationalization and localization files for kmag
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmag
 Group:		X11/Applications
 Requires:	%{name}-kmag = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description kmag-i18n
 Internationalization and localization files for kmag.
@@ -99,7 +98,6 @@ Summary:	Internationalization and localization files for kmousetool
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmousetool
 Group:		X11/Applications
 Requires:	%{name}-kmousetool = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description kmousetool-i18n
 Internationalization and localization files for kmousetool.
@@ -112,7 +110,6 @@ Summary:	Internationalization and localization files for kmouth
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kmouth
 Group:		X11/Applications
 Requires:	%{name}-kmouth = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description kmouth-i18n
 Internationalization and localization files for kmouth.
