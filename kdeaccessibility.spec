@@ -12,8 +12,12 @@ Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	18a949124ff7f5ba8c7e7d107d8ec794
+Icon:		kde-access.xpm
 # Patch100:		%{name}-branch.diff
 URL:		http://www.kde.org/
+BuildRequires:  autoconf
+BuildRequires:  unsermake >= 040511
+BuildRequires:  automake
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
