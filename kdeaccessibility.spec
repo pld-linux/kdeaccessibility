@@ -1,6 +1,6 @@
 
 %define		_ver	3.1.94
-%define		_snap	031204
+%define		_snap	040110
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -9,8 +9,8 @@ Version:	%{_ver}.%{_snap}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	54debdb90217397c2b5f94dcbbef6888
+Source0:	http://www.kernel.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	ee3f69ca4ae4bb70bc61aea18deebd74
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
