@@ -1,0 +1,146 @@
+diff -urN -x CVS kdeaccessibility.orig/kmag/kmag.desktop kdeaccessibility/kmag/kmag.desktop
+--- kdeaccessibility.orig/kmag/kmag.desktop	Thu Jan 15 08:33:59 2004
++++ kdeaccessibility/kmag/kmag.desktop	Mon Feb  2 11:09:11 2004
+@@ -6,6 +6,7 @@
+ MiniIcon=kmag.png
+ DocPath=kmag/index.html
+ Comment=
++Comment[pl]=Program do oglądania powiększonych fragmentów ekranu
+ Comment[xx]=xxxx
+ Terminal=0
+ Name=K Magnifier
+@@ -16,7 +17,9 @@
+ Name[fi]=Suurennuslasi
+ Name[hi]=के मैग्नीफायर
+ Name[hu]=KMag
++Name[is]=K stækkunargler
+ Name[it]=KMagnifier
++Name[pl]=KMagnifier (Lupa)
+ Name[pt]=Lupa
+ Name[pt_BR]=K Lupa
+ Name[ru]=Экранная лупа
+@@ -42,9 +45,12 @@
+ GenericName[fr]=Loupe d'écran
+ GenericName[hi]=स्क्रीन का आकार बढ़ाने वाला
+ GenericName[hu]=Nagyító
++GenericName[is]=Skjástækkunargler
+ GenericName[it]=Lente di ingrandimento per lo schermo
++GenericName[ja]=画面拡大鏡
+ GenericName[nl]=Schermvergroter
+ GenericName[nn]=Skjermforstørrar
++GenericName[pl]=Powiększanie fragmentów ekranu
+ GenericName[pt]=Lupa
+ GenericName[pt_BR]=Amplificador de Tella
+ GenericName[ru]=Экранная лупа
+diff -urN -x CVS kdeaccessibility.orig/kmousetool/kmousetool/kmousetool.desktop kdeaccessibility/kmousetool/kmousetool/kmousetool.desktop
+--- kdeaccessibility.orig/kmousetool/kmousetool/kmousetool.desktop	Thu Jan 15 08:34:01 2004
++++ kdeaccessibility/kmousetool/kmousetool/kmousetool.desktop	Mon Feb  2 11:09:13 2004
+@@ -20,9 +20,12 @@
+ Comment[he]=לוחץ על העכבר עבורך, ובכך מקל על פרק היד
+ Comment[hi]=आपके लिए माउस क्लिक करता है, बार-बार क्लिक के कारण ऊंगलियों में होने वाली क्षति को कम करता है
+ Comment[hu]=Automatikus egérkattintás (RSI-szindrómában szenvedőknek)
++Comment[is]=Smellir músarhnöppunum fyrir þig og dregur úr áhrifum RSI
+ Comment[it]=Fa clic sul mouse al posto tuo
++Comment[ja]=RSIの効果を縮小するにはマウスをクリック
+ Comment[nl]=Klikt de muisknop voor u, vermindert de effecten van RSI
+ Comment[nn]=Klikkar med musa for deg, for å hindra belastningsskadar
++Comment[pl]=Klika za Ciebie myszą, ograniczając nadwyrężanie mięśni
+ Comment[pt]=Carrega no rato por si, aliviando dores motivadas por RSI
+ Comment[pt_BR]= Clica o mouse para você, facilitando a dificuldade do RSI
+ Comment[ru]=Утилита управления мышью для облегчения болевых синдромов
+@@ -63,9 +66,12 @@
+ GenericName[he]=לחיצת עכבר אוטומאטית
+ GenericName[hi]=स्वचालित माउस क्लिक
+ GenericName[hu]=Automatikus kattintás
++GenericName[is]=Sjálfvirkur músahnappasmellir
+ GenericName[it]=Clic automatico del mouse
++GenericName[ja]=自動マウスクリック
+ GenericName[nl]=Automatische muisklik
+ GenericName[nn]=Automatisk museklikk
++GenericName[pl]=Automatyczne klikanie myszą
+ GenericName[pt]=Carregar no Rato
+ GenericName[pt_BR]=Clique Automático do Mouse
+ GenericName[ru]=Автощелчок мышью
+diff -urN -x CVS kdeaccessibility.orig/kmouth/books/de.desktop kdeaccessibility/kmouth/books/de.desktop
+--- kdeaccessibility.orig/kmouth/books/de.desktop	Thu Jan 15 08:34:03 2004
++++ kdeaccessibility/kmouth/books/de.desktop	Fri Jan 30 18:27:45 2004
+@@ -41,11 +41,12 @@
+ Name[ms]=Jerman
+ Name[mt]=Ġermaniż
+ Name[nb]=Tysk
++Name[nds]=Hochdüütsch
+ Name[nl]=Duits
+ Name[nn]=Tysk
+ Name[nso]=Se-German
+ Name[oc]=Alemani
+-Name[pl]=Niemiecki
++Name[pl]=Niemiecka
+ Name[pt]=Alemão
+ Name[pt_BR]=Alemão
+ Name[ro]=Germană
+diff -urN -x CVS kdeaccessibility.orig/kmouth/books/en.desktop kdeaccessibility/kmouth/books/en.desktop
+--- kdeaccessibility.orig/kmouth/books/en.desktop	Thu Jan 15 08:34:05 2004
++++ kdeaccessibility/kmouth/books/en.desktop	Mon Feb  2 11:09:15 2004
+@@ -15,11 +15,14 @@
+ Name[he]=אנגלית
+ Name[hi]= अंग्रेजी
+ Name[hu]=Angol
++Name[is]=Enska
+ Name[it]=Inglese
++Name[ja]=英語
+ Name[ms]=Inggeris
+ Name[mt]=Ingliż
+ Name[nl]=Engels
+ Name[nn]=Engelsk
++Name[pl]=Angielska
+ Name[pt]=Inglês
+ Name[pt_BR]=Inglês
+ Name[ro]=Engleză
+diff -urN -x CVS kdeaccessibility.orig/kmouth/books/sv.desktop kdeaccessibility/kmouth/books/sv.desktop
+--- kdeaccessibility.orig/kmouth/books/sv.desktop	Thu Jan 15 08:34:07 2004
++++ kdeaccessibility/kmouth/books/sv.desktop	Fri Jan 30 18:27:49 2004
+@@ -41,11 +41,12 @@
+ Name[ms]=Sweden
+ Name[mt]=Svediż
+ Name[nb]=Svensk
++Name[nds]=Sweedsch
+ Name[nl]=Zweeds
+ Name[nn]=Svensk
+ Name[nso]=Se-Swedish
+ Name[oc]=Suedès
+-Name[pl]=Szwedzki
++Name[pl]=Szwedzka
+ Name[pt]=Sueco
+ Name[pt_BR]=Suíço
+ Name[ro]=Suedeză
+diff -urN -x CVS kdeaccessibility.orig/kmouth/kmouth.desktop kdeaccessibility/kmouth/kmouth.desktop
+--- kdeaccessibility.orig/kmouth/kmouth.desktop	Thu Jan 15 08:34:09 2004
++++ kdeaccessibility/kmouth/kmouth.desktop	Sat Feb  7 13:39:23 2004
+@@ -6,12 +6,14 @@
+ Icon=kmouth.png
+ DocPath=kmouth/index.html
+ Comment=
++Comment[pl]=Program do oglądania powiększonych fragmentów ekranu
+ Comment[xx]=xxxx
+ Terminal=0
+ Name=KMouth
+ Name[cy]=KCeg
+ Name[eo]=KBuŝo
+ Name[hi]=के-माउथ
++Name[is]=KMunnur
+ Name[pt_BR]=KBoca
+ Name[sv]=Kmouth
+ Name[ta]=K மவுத்
+@@ -31,9 +33,12 @@
+ GenericName[fr]=Interface graphique de synthèse vocale
+ GenericName[hi]=स्पीच सिंथेसाइज़र फ्रन्टएण्ड
+ GenericName[hu]=Beszédszintetizátor
++GenericName[is]=Viðmót á talgerfilinn
+ GenericName[it]=Interfaccia grafica per il sintetizzatore vocale
++GenericName[ja]=スピーチシンセサイザフロントエンド
+ GenericName[nl]=Spraaksynthesizer
+ GenericName[nn]=Grensesnitt for talesyntese
++GenericName[pl]=Program obsługujący syntezator mowy
+ GenericName[pt]=Sintetizador de Fala
+ GenericName[pt_BR]=Interface do Sintetizador de Fala
+ GenericName[ru]=Интерфейс к синтезатору речи
