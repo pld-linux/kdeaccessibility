@@ -3,6 +3,7 @@
 # - fix festival and speech_tools
 
 %define		_state		stable
+%define		_kdever		3.4
 %define		_ver		3.4.0
 
 %define		_minlibsevr	9:3.4.0
@@ -16,7 +17,7 @@ Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	274bd9335219f0fefb6fdc4a17891cf7
 URL:		http://www.kde.org/
 BuildRequires:	festival-devel
