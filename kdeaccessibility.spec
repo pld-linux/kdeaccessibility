@@ -2,6 +2,7 @@
 # TODO:
 # - include files
 # - kbstateapplet
+# - fix festival and speech_tools
 #
 
 %define		_state		unstable
@@ -22,10 +23,13 @@ Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	d81bd9b7406a6c1e4325906a0af5b885
 #Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+Patch0:		%{name}-kttsjobmgr.patch
 URL:		http://www.kde.org/
 BuildRequires:	festival-devel
+BuildRequires:	gstreamer-plugins-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	speech_tools-devel
 BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -134,8 +138,21 @@ do konwersji tekstu w s³yszaln± mowê. KTTS jest ca³y czas rozwijany,
 jego celem jest zostanie standardowym podsystemem dostarczaj±cym
 wyj¶cie mowy dla wszystkich aplikacji KDE.
 
+%package kttsd-gstreamer
+Summary:	KTTS GStreamer plugin
+Summary(pl):	Wtyczka Gstreamer dla KTTS
+Group:		X11/Applications
+Requires:	kdeaccessibility-kttsd = %{epoch}:%{version}-%{release}
+
+%description kttsd-gstreamer
+KTTS GStreamer plugin.
+
+%description kttsd-gstreamer -l pl
+Wtyczka Gstreamer dla KTTS.
+
 %prep
 %setup -q
+%patch0 -p1
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	kmouth/kmouth.desktop
@@ -154,6 +171,9 @@ cp /usr/share/automake/config.sub admin
 %configure \
 	--disable-rpath \
 	--enable-final \
+	--enable-kttsd-festival \
+	--enable-kttsd-festivalcs \
+	--enable-kttsd-gstreamer \
 	--with-qt-libraries=%{_libdir} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
@@ -237,6 +257,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_commandplugin.so
 %{_libdir}/kde3/libkttsd_eposplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_eposplugin.so
+%{_libdir}/kde3/libkttsd_festivalcsplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalcsplugin.so
 %{_libdir}/kde3/libkttsd_festivalintplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalintplugin.so
 %{_libdir}/kde3/libkttsd_fliteplugin.la
@@ -269,3 +291,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/*/kttsd.*
 %{_iconsdir}/*/*/*/female.*
 %{_iconsdir}/*/*/*/male.*
+
+%files kttsd-gstreamer
+%defattr(644,root,root,755)
+%{_libdir}/kde3/libkttsd_gstplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_gstplugin.so
