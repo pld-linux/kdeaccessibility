@@ -2,25 +2,24 @@
 # TODO:
 # - fix festival and speech_tools
 
-%define		_state		unstable
-%define		_ver		3.3.92
-%define		_snap		050217
+%define		_state		stable
+%define		_ver		3.4.0
+#%define		_snap		050217
 
-%define		_minlibsevr	9:3.3.92.050217
-%define		_minbaseevr	9:3.3.92.050217
+%define		_minlibsevr	9:3.4.0
+%define		_minbaseevr	9:3.4.0
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	%{_ver}.%{_snap}
-#Version:	%{_ver}
+#Version:	%{_ver}.%{_snap}
+Version:	%{_ver}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-#%% Source0-md5:	d81bd9b7406a6c1e4325906a0af5b885
-Patch0:		%{name}-kttsjobmgr.patch
+#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	274bd9335219f0fefb6fdc4a17891cf7
 URL:		http://www.kde.org/
 BuildRequires:	festival-devel
 BuildRequires:	gstreamer-plugins-devel
@@ -172,9 +171,8 @@ KTTS GStreamer plugin.
 Wtyczka Gstreamer dla KTTS.
 
 %prep
-%setup -q -n %{name}-%{_snap}
-#%setup -q
-%patch0 -p1
+#%setup -q -n %{name}-%{_snap}
+%setup -q
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
