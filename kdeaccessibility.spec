@@ -9,7 +9,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
@@ -106,7 +106,11 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 %configure \
 	--disable-rpath \
 	--enable-final \
-	--with-qt-libraries=%{_libdir}
+	--with-qt-libraries=%{_libdir} \
+%if "%{_lib}" == "lib64"
+	--enable-libsuffix=64 \
+%endif
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
 %{__make}
 
