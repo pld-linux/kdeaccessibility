@@ -1,17 +1,17 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040511
+%define		_snap		040517
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040508
-%define		_minbaseevr	9:3.2.90.040508
+%define		_minlibsevr	9:3.2.90.040515
+%define		_minbaseevr	9:3.2.90.040515
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
@@ -20,7 +20,7 @@ Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake
+BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -90,13 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-# Workaround for doc caches (unsermake bug?)
-cd doc
-for i in `find . -name index.cache.bz2`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -	 
-
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
 mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
@@ -106,37 +99,24 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang kmousetool	--with-kde
 %find_lang kmouth	--with-kde
 
-files="\
-	kmag \
-	kmousetool \
-	kmouth"
-
-for i in $files; do
-	> ${i}_en.lang
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files kmag -f kmag_en.lang
+%files kmag -f kmag.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmag
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
 %{_iconsdir}/[!l]*/*/apps/kmag.png
 
-%files kmousetool -f kmousetool_en.lang
+%files kmousetool -f kmousetool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmousetool
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
 %{_iconsdir}/[!l]*/*/apps/kmousetool.png
 
-%files kmouth -f kmouth_en.lang
+%files kmouth -f kmouth.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmouth
 %{_datadir}/apps/kmouth
