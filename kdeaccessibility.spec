@@ -1,21 +1,20 @@
 
 %define		_state		stable
-%define		_ver		3.3.1
+%define		_ver		3.3.2
 
-%define		_minlibsevr	9:3.3.1
-%define		_minbaseevr	9:3.3.1
+%define		_minlibsevr	9:3.3.2
+%define		_minbaseevr	9:3.3.2
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	2
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
-Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	b5154d0c0232c93308b8e7bb7d83e6c9
-# Source0-size:	1239532
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	2d1fc370ce1e6a58c82d4dc283ee206d
 #Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
