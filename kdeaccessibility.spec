@@ -1,6 +1,6 @@
 
 %define		_ver	3.1.93
-%define		_snap	031103
+%define		_snap	031105
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -10,9 +10,9 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	7fe099654005e8030c92f557ad95ccd2
-#Patch0:		%{name}-vcategories.patch
+# Source0-md5:	117884e35cb55f342893e5e305c81b56
 BuildRequires:	kdelibs-devel >= 9:%{version}
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -60,7 +60,6 @@ Frontend do syntezatorów mowy.
 
 %prep
 %setup -q -n %{name}-%{_snap}
-#%patch0 -p1
 
 %build
 %{__make} -f admin/Makefile.common cvs
@@ -77,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_appsdir=%{_applnkdir} \
-	kde_htmldir=%{_docdir}/kde/HTML
+	kde_htmldir=%{_kdedocdir}
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
 
