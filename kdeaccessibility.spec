@@ -165,10 +165,6 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang kmousetool	--with-kde
 %find_lang kmouth	--with-kde
 
-%if %{with i18n}
-%find_lang desktop_kdeaccessibility	--with-kde
-%endif
-
 files="kmag \
 kmousetool \
 kmouth"
@@ -185,7 +181,6 @@ done
 rm -rf $RPM_BUILD_ROOT
 
 %if %{with i18n}
-%files i18n -f desktop_kdeaccessibility.lang
 %files kmag-i18n -f kmag.lang
 %files kmousetool-i18n -f kmousetool.lang
 %files kmouth-i18n -f kmouth.lang
