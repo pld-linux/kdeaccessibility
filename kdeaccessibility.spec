@@ -7,11 +7,11 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 # Source0-md5:	97466b78dcee2d29505937c79919713d
 %if %{with i18n}
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
@@ -68,7 +68,7 @@ Frontend do syntezatorów mowy.
 Summary:	Common internationalization and localization files for kdeaccessibility
 Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeaccessibility
 Group:	X11/Applications
-Requires:	kdelibs-i18n
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description i18n
 Common internationalization and localization files for kdeaccessibility.
