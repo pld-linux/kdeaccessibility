@@ -4,7 +4,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040213
+%define		_snap		040227
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -125,6 +125,9 @@ Pliki umiêdzynarodawiaj±ce dla kmouth.
 %build
 cp /usr/share/automake/config.sub admin
 
+export kde_htmldir=%{_kdedocdir}
+
+
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
@@ -140,8 +143,7 @@ export UNSERMAKE=/usr/share/unsermake/unsermake
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %if %{with i18n}
 if [ -f "%{SOURCE1}" ] ; then
