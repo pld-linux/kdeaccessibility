@@ -1,11 +1,11 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040517
+%define		_snap		040525
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040515
-%define		_minbaseevr	9:3.2.90.040515
+%define		_minlibsevr	9:3.2.90.040524
+%define		_minbaseevr	9:3.2.90.040524
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
