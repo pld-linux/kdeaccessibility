@@ -24,6 +24,7 @@ BuildRequires:	festival-devel
 BuildRequires:	gstreamer-plugins-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	sed >= 4.0
 BuildRequires:	speech_tools-devel
 #BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
