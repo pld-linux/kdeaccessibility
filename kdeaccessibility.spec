@@ -1,16 +1,16 @@
 
-%define		_snap	030918
-%define		_ver	3.1.91
+%define		_snap	030930
+%define		_ver	3.1.92
 
 Summary:	TODO
 Summary(pl):	TODO
 Name:		kdeaccessibility
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	7590003d7dae018265e963e1c25213a4
+# Source0-md5:	046dd3a83761429d9bb45ff54837e127
 Patch0:		%{name}-vcategories.patch
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
