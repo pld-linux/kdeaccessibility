@@ -40,6 +40,7 @@ Summary:	Accessibility support for KDE - header files
 Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
 Group:		X11/Applications
 Requires:	kdelibs-devel = %{_minlibsver}
+Obsoletes:	kttsd-devel
 
 %description devel
 Accessibility support for KDE - header files.
@@ -132,7 +133,7 @@ syntezator zainstalowany w systemie.
 Summary:	KSayIt - A Text To Speech frontend for KDE
 Summary(pl):	KSayIt - Frontend systemu Tekst-w-Mowê KDE
 Group:		X11/Applications
-Requires:	kdeaccessibility-kttsd = %{epoch}:%{version}-%{release}
+Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
 %description ksayit
 A Text To Speech frontend for KDE.
@@ -145,6 +146,7 @@ Summary:	KDE Text-to-Speech
 Summary(pl):	KDE Tekst-w-Mowê
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
+Obsoletes:	kttsd
 
 %description kttsd
 KTTS -- KDE Text-to-Speech -- is a subsystem within the KDE desktop
@@ -162,7 +164,7 @@ wyj¶cie mowy dla wszystkich aplikacji KDE.
 Summary:	KTTS GStreamer plugin
 Summary(pl):	Wtyczka Gstreamer dla KTTS
 Group:		X11/Applications
-Requires:	kdeaccessibility-kttsd = %{epoch}:%{version}-%{release}
+Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
 %description kttsd-gstreamer
 KTTS GStreamer plugin.
