@@ -11,7 +11,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	26179a0315123a72949a5981f5d4beb3
+# Source0-md5:	18a949124ff7f5ba8c7e7d107d8ec794
 # Patch100:		%{name}-branch.diff
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= 9:%{version}
@@ -104,7 +104,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
 %{_iconsdir}/[!l]*/*/apps/kmag.png
-%{_kdedocdir}/kmag
+%{_kdedocdir}/en/kmag
 
 %files kmousetool
 %defattr(644,root,root,755)
@@ -112,7 +112,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
 %{_iconsdir}/[!l]*/*/apps/kmousetool.png
-%{_kdedocdir}/kmousetool
+%{_kdedocdir}/en/kmousetool
 
 %files kmouth 
 %defattr(644,root,root,755)
@@ -121,4 +121,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config/kmouthrc
 %{_desktopdir}/kde/kmouth.desktop
 %{_iconsdir}/[!l]*/*/apps/kmouth.png
-%{_kdedocdir}/kmouth
+%{_kdedocdir}/en/kmouth
