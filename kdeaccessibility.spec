@@ -1,7 +1,6 @@
 
-%define		_state		unstable
+%define		_state		stable
 %define		_ver		3.3.0
-%define		_snap		rc2
 
 %define		_minlibsevr	9:3.3.0
 %define		_minbaseevr	9:3.3.0
@@ -10,13 +9,13 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	0.%{_snap}.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
-# Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
-# Source0-md5:	f333e22ee5c700cb487d91457f789304
+Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/3.3/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	17dc4ae94d0307a00e2b676818f49d63
+#Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -88,6 +87,10 @@ syntezator zainstalowany w systemie.
 
 %prep
 %setup -q
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
+./kmag/kmag.desktop \
+./kmousetool/kmousetool/kmousetool.desktop \
+./kmouth/kmouth.desktop
 
 %build
 cp /usr/share/automake/config.sub admin
