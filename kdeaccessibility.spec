@@ -9,7 +9,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
@@ -88,9 +88,12 @@ syntezator zainstalowany w systemie.
 %prep
 %setup -q
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
-./kmag/kmag.desktop \
-./kmousetool/kmousetool/kmousetool.desktop \
-./kmouth/kmouth.desktop
+	-e 's/Terminal=0/Terminal=false/' \
+	kmag/kmag.desktop \
+	kmouth/kmouth.desktop
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
+	-e 's/Terminal=0/Terminal=false/' -e '/\[Desktop Entry\]/aEncoding=UTF-8' \
+	kmousetool/kmousetool/kmousetool.desktop
 
 %build
 cp /usr/share/automake/config.sub admin
