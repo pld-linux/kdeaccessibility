@@ -2,7 +2,6 @@
 %define		_state		snapshots
 %define		_ver		3.2.91
 %define		_snap		040703
-%define		_packager	adgor
 
 %define		_minlibsevr	9:3.2.91.040629
 %define		_minbaseevr	9:3.2.91.040629
@@ -14,9 +13,7 @@ Version:	%{_ver}.%{_snap}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	97466b78dcee2d29505937c79919713d
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 URL:		http://www.kde.org/
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
