@@ -6,7 +6,7 @@ Summary:	TODO
 Summary(pl):	TODO
 Name:		kdeaccessibility
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
@@ -77,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_docdir}/kde/HTML
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
