@@ -3,7 +3,7 @@
 %bcond_without	i18n	# don't build i18n subpackage
 #
 %define		_state		stable
-%define		_ver		3.2.0
+%define		_ver		3.2.1
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
