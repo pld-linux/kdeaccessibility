@@ -9,7 +9,7 @@ Version:	%{_ver}.%{_snap}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	54debdb90217397c2b5f94dcbbef6888
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRequires:	rpmbuild(macros) >= 1.129
