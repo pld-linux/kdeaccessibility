@@ -1,12 +1,16 @@
+
+%define		_snap	030918
+%define		_ver	3.1.91
+
 Summary:	TODO
 Summary(pl):	TODO
 Name:		kdeaccessibility
-Version:	3.1.91
-Release:	0.1
+Version:	%{_ver}.%{_snap}
+Release:	2
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{version}.tar.bz2
-#%% Source0-md5:	573d6d12bf5fc7f9a26de3cc0560ecf8
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	7590003d7dae018265e963e1c25213a4
 Patch0:		%{name}-vcategories.patch
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,7 +60,7 @@ TODO.
 TODO.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 
 %build
@@ -73,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_docdir}/kde/HTML
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
