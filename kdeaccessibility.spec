@@ -1,12 +1,16 @@
-Summary:	TODO
-Summary(pl):	TODO
+
+%define		_ver	3.1.92
+%define		_snap	031024
+
+Summary:	Accessibility support for KDE
+Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	3.1.91
-Release:	0.1
+Version:	%{_ver}.%{_snap}
+Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{version}.tar.bz2
-#%% Source0-md5:	573d6d12bf5fc7f9a26de3cc0560ecf8
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	a57750979f966fe77570b8948b226e29
 Patch0:		%{name}-vcategories.patch
 BuildRequires:	kdelibs-devel >= 9:%{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -14,53 +18,53 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define         no_install_post_chrpath         1
 
 %description
-TODO
+Accessibility support for KDE.
 
 %description -l pl
-TODO
+U³atwienia dostêpu dla KDE.
 
 %package kmag
-Summary:        TODO                                                            
-Summary(pl):    TODO
+Summary:        A KDE magnifying tool
+Summary(pl):    Lupa dla ¶rodowiska KDE
 Group:          X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmag
-TODO.
+A KDE magnifying tool.
 
 %description kmag -l pl
-TODO.
+Lupa dla ¶rodowiska KDE.
 
 %package kmousetool
-Summary:        TODO                                                            
-Summary(pl):    TODO
+Summary:        MouseTool - a program that clicks the mouse for you
+Summary(pl):    MouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
 Group:          X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmousetool
-TODO.
+MouseTool is a program that clicks the mouse for you.
 
 %description kmousetool -l pl
-TODO.
+MouseTool to narzêdzie do klikania myszk± bez naciskania jej
+przycisków.
 
 %package kmouth
-Summary:        TODO                                                            
-Summary(pl):    TODO
+Summary:        A frontend for speech synthesizers
+Summary(pl):    Frontend do syntezatorów mowy
 Group:          X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kmouth
-TODO.
+A frontend for speech synthesizers.
 
 %description kmouth -l pl
-TODO.
+Frontend do syntezatorów mowy.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 
 %build
-
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -73,6 +77,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
 	kde_htmldir=%{_docdir}/kde/HTML
 
 install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
