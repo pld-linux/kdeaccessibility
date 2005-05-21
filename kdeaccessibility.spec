@@ -13,7 +13,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
@@ -39,7 +39,7 @@ U³atwienia dostêpu dla KDE.
 Summary:	Accessibility support for KDE - header files
 Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
 Group:		X11/Applications
-Requires:	kdelibs-devel = %{_minlibsver}
+Requires:	kdelibs-devel = %{_minlibsevr}
 
 %description devel
 Accessibility support for KDE - header files.
