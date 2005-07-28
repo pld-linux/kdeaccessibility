@@ -13,7 +13,7 @@ Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
