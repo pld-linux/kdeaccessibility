@@ -3,22 +3,22 @@
 # - fix festival and speech_tools
 
 %define		_state		stable
-%define		_kdever		3.4.2
-%define		_ver		3.4.2
+%define		_kdever		3.4.3
+%define		_ver		3.4.3
 
-%define		_minlibsevr	9:3.4.2
-%define		_minbaseevr	9:3.4.2
+%define		_minlibsevr	9:3.4.3
+%define		_minbaseevr	9:3.4.3
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	9ad0e81fc51de5513d778a2e4104d2c3
+# Source0-md5:	02f8ffe95f253aaab8a13ab7211494dc
 URL:		http://www.kde.org/
 BuildRequires:	festival-devel
 BuildRequires:	gstreamer-plugins-devel
