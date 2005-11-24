@@ -3,11 +3,11 @@
 # - fix festival and speech_tools
 
 %define		_state		stable
-%define		_kdever		3.4.3
-%define		_ver		3.4.3
+%define		_kdever		3.5
+%define		_ver		3.5.0
 
-%define		_minlibsevr	9:3.4.3
-%define		_minbaseevr	9:3.4.3
+%define		_minlibsevr	9:3.5.0
+%define		_minbaseevr	9:3.5.0
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -18,8 +18,9 @@ License:	GPL
 Group:		X11/Applications
 Icon:		kde-access.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	02f8ffe95f253aaab8a13ab7211494dc
+# Source0-md5:	f88f3340acdd219050759df86e3d97d0
 URL:		http://www.kde.org/
+BuildRequires:	akode-devel
 BuildRequires:	festival-devel
 BuildRequires:	gstreamer-plugins-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
@@ -159,6 +160,18 @@ do konwersji tekstu w s³yszaln± mowê. KTTS jest ca³y czas rozwijany,
 jego celem jest zostanie standardowym podsystemem dostarczaj±cym
 wyj¶cie mowy dla wszystkich aplikacji KDE.
 
+%package kttsd-akode
+Summary:	KTTS AKODE plugin
+Summary(pl):	Wtyczka AKODE dla KTTS
+Group:		X11/Applications
+Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
+
+%description kttsd-akode
+KTTS AKODE plugin.
+
+%description kttsd-akode -l pl
+Wtyczka AKODE dla KTTS.
+
 %package kttsd-gstreamer
 Summary:	KTTS GStreamer plugin
 Summary(pl):	Wtyczka Gstreamer dla KTTS
@@ -172,7 +185,6 @@ KTTS GStreamer plugin.
 Wtyczka Gstreamer dla KTTS.
 
 %prep
-#%setup -q -n %{name}-%{_snap}
 %setup -q
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -184,13 +196,15 @@ Wtyczka Gstreamer dla KTTS.
 
 %build
 cp /usr/share/automake/config.sub admin
-#export UNSERMAKE=/usr/share/unsermake/unsermake
 
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
 	--enable-final \
+	--with-gstreamer \
+	--with-alsa \
+	--with-akode \
 	--enable-kttsd-festival \
 	--enable-kttsd-festivalcs \
 	--enable-kttsd-gstreamer \
@@ -229,7 +243,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/kparts/kttsjobmgr.h
 %{_includedir}/ksayit_fxplugin.h
 
 %files -n kde-icons-mono
@@ -283,6 +296,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcm_kttsd.so
 %{_libdir}/kde3/ktexteditor_kttsd.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_kttsd.so
+%{_libdir}/kde3/libkttsd_alsaplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_alsaplugin.so
 %{_libdir}/kde3/libkttsd_artsplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_artsplugin.so
 %{_libdir}/kde3/libkttsd_commandplugin.la
@@ -315,12 +330,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kttsmgr.desktop
 %{_datadir}/apps/ktexteditor_kttsd
 %{_datadir}/apps/kttsd
-%{_datadir}/apps/kttsjobmgr
 %{_datadir}/services/*ktts*.desktop
 %{_datadir}/servicetypes/*ktts*.desktop
 %{_iconsdir}/*/*/*/kttsd.*
 %{_iconsdir}/*/*/*/female.*
 %{_iconsdir}/*/*/*/male.*
+%{_iconsdir}/*/*/*/*speak.png
+
+%files kttsd-akode
+%defattr(644,root,root,755)
+%{_libdir}/kde3/libkttsd_akodeplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libkttsd_akodeplugin.so
 
 %files kttsd-gstreamer
 %defattr(644,root,root,755)
