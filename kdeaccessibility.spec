@@ -16,7 +16,6 @@ Version:	%{_ver}
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Icon:		kde-access.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	f88f3340acdd219050759df86e3d97d0
 URL:		http://www.kde.org/
