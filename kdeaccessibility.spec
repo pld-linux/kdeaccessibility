@@ -3,11 +3,11 @@
 # - fix festival and speech_tools
 
 %define		_state		stable
-%define		_kdever		3.5
-%define		_ver		3.5.0
+%define		_kdever		3.5.1
+%define		_ver		3.5.1
 
-%define		_minlibsevr	9:3.5.0
-%define		_minbaseevr	9:3.5.0
+%define		_minlibsevr	9:3.5.1
+%define		_minbaseevr	9:3.5.1
 
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
@@ -17,7 +17,7 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	f88f3340acdd219050759df86e3d97d0
+# Source0-md5:	cc0773103053a6800b3d35e6021b6719
 URL:		http://www.kde.org/
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
