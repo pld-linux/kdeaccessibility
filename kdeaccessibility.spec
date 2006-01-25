@@ -200,7 +200,7 @@ cp /usr/share/automake/config.sub admin
 
 %configure \
 	--disable-rpath \
-	--enable-final \
+	--disable-final \
 	--with-gstreamer \
 	--with-alsa \
 	--with-akode \
