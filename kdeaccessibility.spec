@@ -18,7 +18,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.t
 URL:		http://www.kde.org/
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
-BuildRequires:	gstreamer-plugins-devel
+BuildRequires:	gstreamer-plugins-base-devel
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
