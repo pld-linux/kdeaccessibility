@@ -2,6 +2,8 @@
 # TODO:
 # - fix festival and speech_tools
 
+%bcond_with	gstreamer	# needs gstreamer-plugins-devel 0.8
+
 %define		_state		stable
 %define		_minlibsevr	9:%{version}
 %define		_minbaseevr	9:%{version}
@@ -9,16 +11,19 @@
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	3.5.2
+Version:	3.5.3
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	bcfd51875aa2a168fbc97055a576a33c
+# Source0-md5:	99eadb3a73bc250e96cec370ee79caff
 URL:		http://www.kde.org/
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
-BuildRequires:	gstreamer-plugins-base-devel
+%if %{with gstreamer}
+BuildRequires:	gstreamer-plugins-base-devel >= 0.8.0
+BuildRequires:	gstreamer-plugins-base-devel >= 0.9.0
+%endif
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
@@ -197,12 +202,14 @@ cp /usr/share/automake/config.sub admin
 %configure \
 	--disable-rpath \
 	--disable-final \
+%if %{with gstreamer}
 	--with-gstreamer \
+	--enable-kttsd-gstreamer \
+%endif
 	--with-alsa \
 	--with-akode \
 	--enable-kttsd-festival \
 	--enable-kttsd-festivalcs \
-	--enable-kttsd-gstreamer \
 	--with-qt-libraries=%{_libdir} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
@@ -337,7 +344,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/libkttsd_akodeplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_akodeplugin.so
 
+%if %{with gstreamer}
 %files kttsd-gstreamer
 %defattr(644,root,root,755)
 %{_libdir}/kde3/libkttsd_gstplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_gstplugin.so
+%endif
