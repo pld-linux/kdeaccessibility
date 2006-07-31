@@ -11,12 +11,12 @@
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	3.5.3
+Version:	3.5.4
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	99eadb3a73bc250e96cec370ee79caff
+# Source0-md5:	bc64350a56a585e4d2c88fe3fc8b24f8
 URL:		http://www.kde.org/
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
