@@ -21,8 +21,8 @@ URL:		http://www.kde.org/
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
 %if %{with gstreamer}
-BuildRequires:	gstreamer08x-devel >= 0.8.5
 BuildRequires:	gstreamer-plugins-devel >= 0.8.5
+BuildRequires:	gstreamer08x-devel >= 0.8.5
 %endif
 BuildRequires:	kdelibs-devel >= %{_minlibsevr}
 BuildRequires:	rpmbuild(macros) >= 1.129
