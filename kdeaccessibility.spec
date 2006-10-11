@@ -19,6 +19,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.t
 # Source0-md5:	a227e65e012b83c8635f6e16c4dc3259
 URL:		http://www.kde.org/
 Patch0:		kde-common-PLD.patch
+Patch1:		kde-ac260-lt.patch
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
 %if %{with gstreamer}
@@ -188,6 +189,8 @@ Wtyczka Gstreamer dla KTTS.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	kmouth/kmouth.desktop
