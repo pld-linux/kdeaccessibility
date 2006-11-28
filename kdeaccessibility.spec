@@ -32,6 +32,8 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	speech_tools-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      libtool(.*)
+
 %description
 Accessibility support for KDE.
 
