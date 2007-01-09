@@ -1,0 +1,12 @@
+--- ./kmag/kmagselrect.h.org	2007-01-09 18:08:52.120065250 +0100
++++ ./kmag/kmagselrect.h	2007-01-09 18:09:47.947554250 +0100
+@@ -27,9 +27,6 @@
+ #include <qwidget.h>
+ #include <qlabel.h>
+ 
+-// Min function
+-#define min(a,b) ((a) < (b) ? (a) : (b))
+-
+ class KMagSelWinCorner : public QLabel
+ {
+     Q_OBJECT
