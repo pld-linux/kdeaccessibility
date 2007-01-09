@@ -247,7 +247,7 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang kttsd	--with-kde
 
 rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
-rm -rf $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
