@@ -9,7 +9,7 @@
 %define		_minbaseevr	9:%{version}
 
 Summary:	Accessibility support for KDE
-Summary(pl.UTF-8):   Ułatwienia dostępu dla KDE
+Summary(pl.UTF-8):	Ułatwienia dostępu dla KDE
 Name:		kdeaccessibility
 Version:	3.5.6
 Release:	1
@@ -43,7 +43,7 @@ Ułatwienia dostępu dla KDE.
 
 %package devel
 Summary:	Accessibility support for KDE - header files
-Summary(pl.UTF-8):   Ułatwienia dostępu dla KDE - pliki nagłówkowe
+Summary(pl.UTF-8):	Ułatwienia dostępu dla KDE - pliki nagłówkowe
 Group:		X11/Applications
 Requires:	kdelibs-devel = %{_minlibsevr}
 
@@ -55,7 +55,7 @@ Ułatwienia dostępu dla KDE - pliki nagłówkowe.
 
 %package -n kde-icons-mono
 Summary:	KDE Icons Theme - mono
-Summary(pl.UTF-8):   Motyw ikon dla KDE - mono
+Summary(pl.UTF-8):	Motyw ikon dla KDE - mono
 Group:		X11/Amusements
 Requires:	kdelibs >= %{_minlibsevr}
 
@@ -67,7 +67,7 @@ Motyw ikon dla KDE - mono.
 
 %package kbstateapplet
 Summary:	Keyboard Status Applet
-Summary(pl.UTF-8):   Aplet stanu klawiatury
+Summary(pl.UTF-8):	Aplet stanu klawiatury
 Group:		X11/Applications
 Requires:	kdebase-desktop >= %{_minbaseevr}
 
@@ -79,7 +79,7 @@ Aplet stanu klawiatury.
 
 %package kmag
 Summary:	A KDE magnifying tool
-Summary(pl.UTF-8):   Lupa dla środowiska KDE
+Summary(pl.UTF-8):	Lupa dla środowiska KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -91,7 +91,7 @@ Lupa dla środowiska KDE.
 
 %package kmousetool
 Summary:	KMouseTool - a program that clicks the mouse for you
-Summary(pl.UTF-8):   KMouseTool - narzędzie do klikania myszką bez naciskania jej przycisków
+Summary(pl.UTF-8):	KMouseTool - narzędzie do klikania myszką bez naciskania jej przycisków
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -112,7 +112,7 @@ pewnej praktyki.
 
 %package kmouth
 Summary:	A frontend for speech synthesizers
-Summary(pl.UTF-8):   Frontend do syntezatorów mowy
+Summary(pl.UTF-8):	Frontend do syntezatorów mowy
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -136,7 +136,7 @@ syntezator zainstalowany w systemie.
 
 %package ksayit
 Summary:	KSayIt - A Text To Speech frontend for KDE
-Summary(pl.UTF-8):   KSayIt - Frontend systemu Tekst-w-Mowę KDE
+Summary(pl.UTF-8):	KSayIt - Frontend systemu Tekst-w-Mowę KDE
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
@@ -148,7 +148,7 @@ Frontend systemu Tekst-w-Mowę KDE.
 
 %package kttsd
 Summary:	KDE Text-to-Speech
-Summary(pl.UTF-8):   KDE Tekst-w-Mowę
+Summary(pl.UTF-8):	KDE Tekst-w-Mowę
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kttsd
@@ -167,7 +167,7 @@ wyjście mowy dla wszystkich aplikacji KDE.
 
 %package kttsd-akode
 Summary:	KTTS AKODE plugin
-Summary(pl.UTF-8):   Wtyczka AKODE dla KTTS
+Summary(pl.UTF-8):	Wtyczka AKODE dla KTTS
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
@@ -179,7 +179,7 @@ Wtyczka AKODE dla KTTS.
 
 %package kttsd-gstreamer
 Summary:	KTTS GStreamer plugin
-Summary(pl.UTF-8):   Wtyczka Gstreamer dla KTTS
+Summary(pl.UTF-8):	Wtyczka Gstreamer dla KTTS
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
