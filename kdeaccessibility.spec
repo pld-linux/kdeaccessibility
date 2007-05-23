@@ -11,16 +11,15 @@
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	3.5.6
-Release:	1
+Version:	3.5.7
+Release:	0.1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	03d3c9f4d8c2fd12b7d0e020e11cd88e
+# Source0-md5:	49a3ffc5303a0c59abf9dcfef185f8bc
 URL:		http://www.kde.org/
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
-Patch2:		%{name}-min.patch
 BuildRequires:	akode-devel
 BuildRequires:	festival-devel
 %if %{with gstreamer}
@@ -191,7 +190,6 @@ Wtyczka Gstreamer dla KTTS.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p0
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Accessibility;/' \
 	-e 's/Terminal=0/Terminal=false/' \
