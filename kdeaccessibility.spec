@@ -11,12 +11,12 @@
 Summary:	Accessibility support for KDE
 Summary(pl):	U³atwienia dostêpu dla KDE
 Name:		kdeaccessibility
-Version:	3.5.7
+Version:	3.5.8
 Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	49a3ffc5303a0c59abf9dcfef185f8bc
+# Source0-md5:	0ede2d48df626aa436dbe6c741d575f1
 URL:		http://www.kde.org/
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
