@@ -1,8 +1,10 @@
 #
 # TODO:
 # - fix festival and speech_tools
-
-%bcond_with	gstreamer	# needs gstreamer-plugins-devel 0.8
+#
+# Conditional build:
+%bcond_with	gstreamer	# gstreamer support (needs gstreamer-plugins-devel 0.8)
+#
 
 %define		_state		stable
 %define		_minlibsevr	9:%{version}
