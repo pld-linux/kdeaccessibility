@@ -1,8 +1,10 @@
 #
 # TODO:
 # - fix festival and speech_tools
-
-%bcond_with	gstreamer	# needs gstreamer-plugins-devel 0.8
+#
+# Conditional build:
+%bcond_with	gstreamer	# gstreamer support (needs gstreamer-plugins-devel 0.8)
+#
 
 %define		_state		stable
 %define		_minlibsevr	9:%{version}
@@ -241,6 +243,7 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
 %find_lang kttsd	--with-kde
 
 rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -251,6 +254,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/ksayit_fxplugin.h
+%{_libdir}/*.la
 
 %files -n kde-icons-mono
 %defattr(644,root,root,755)
@@ -261,7 +265,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kbstateapplet
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kbstate_panelapplet.la
 %attr(755,root,root) %{_libdir}/kde3/kbstate_panelapplet.so
 %{_datadir}/apps/kbstateapplet
 %{_datadir}/apps/kicker/applets/kbstateapplet.desktop
@@ -299,39 +302,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kttsd
 %attr(755,root,root) %{_bindir}/kttsmgr
-%{_libdir}/kde3/kcm_kttsd.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kttsd.so
-%{_libdir}/kde3/ktexteditor_kttsd.la
 %attr(755,root,root) %{_libdir}/kde3/ktexteditor_kttsd.so
-%{_libdir}/kde3/libkttsd_alsaplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_alsaplugin.so
-%{_libdir}/kde3/libkttsd_artsplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_artsplugin.so
-%{_libdir}/kde3/libkttsd_commandplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_commandplugin.so
-%{_libdir}/kde3/libkttsd_eposplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_eposplugin.so
-%{_libdir}/kde3/libkttsd_festivalintplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_festivalintplugin.so
-%{_libdir}/kde3/libkttsd_fliteplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_fliteplugin.so
-%{_libdir}/kde3/libkttsd_freettsplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_freettsplugin.so
-%{_libdir}/kde3/libkttsd_hadifixplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_hadifixplugin.so
-%{_libdir}/kde3/libkttsd_sbdplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_sbdplugin.so
-%{_libdir}/kde3/libkttsd_stringreplacerplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_stringreplacerplugin.so
-%{_libdir}/kde3/libkttsd_talkerchooserplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_talkerchooserplugin.so
-%{_libdir}/kde3/libkttsd_xmltransformerplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_xmltransformerplugin.so
-%{_libdir}/kde3/libkttsjobmgrpart.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsjobmgrpart.so
-%{_libdir}/libKTTSD_Lib.la
 %attr(755,root,root) %{_libdir}/libKTTSD_Lib.so.*.*.*
-%{_libdir}/libkttsd.la
 %attr(755,root,root) %{_libdir}/libkttsd.so.*.*.*
 %{_desktopdir}/kde/kcmkttsd.desktop
 %{_desktopdir}/kde/kttsmgr.desktop
@@ -346,12 +332,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kttsd-akode
 %defattr(644,root,root,755)
-%{_libdir}/kde3/libkttsd_akodeplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_akodeplugin.so
 
 %if %{with gstreamer}
 %files kttsd-gstreamer
 %defattr(644,root,root,755)
-%{_libdir}/kde3/libkttsd_gstplugin.la
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_gstplugin.so
 %endif
