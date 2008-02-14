@@ -9,7 +9,7 @@
 %define		_minbaseevr	9:%{version}
 
 Summary:	Accessibility support for KDE
-Summary(pl):	U³atwienia dostêpu dla KDE
+Summary(pl.UTF-8):	UÅ‚atwienia dostÄ™pu dla KDE
 Name:		kdeaccessibility
 Version:	3.5.8
 Release:	1
@@ -35,60 +35,60 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Accessibility support for KDE.
 
-%description -l pl
-U³atwienia dostêpu dla KDE.
+%description -l pl.UTF-8
+UÅ‚atwienia dostÄ™pu dla KDE.
 
 %package devel
 Summary:	Accessibility support for KDE - header files
-Summary(pl):	U³atwienia dostêpu dla KDE - pliki nag³ówkowe
+Summary(pl.UTF-8):	UÅ‚atwienia dostÄ™pu dla KDE - pliki nagÅ‚Ã³wkowe
 Group:		X11/Applications
 Requires:	kdelibs-devel = %{_minlibsevr}
 
 %description devel
 Accessibility support for KDE - header files.
 
-%description devel -l pl
-U³atwienia dostêpu dla KDE - pliki nag³ówkowe.
+%description devel -l pl.UTF-8
+UÅ‚atwienia dostÄ™pu dla KDE - pliki nagÅ‚Ã³wkowe.
 
 %package -n kde-icons-mono
 Summary:	KDE Icons Theme - mono
-Summary(pl):	Motyw ikon dla KDE - mono
+Summary(pl.UTF-8):	Motyw ikon dla KDE - mono
 Group:		X11/Amusements
 Requires:	kdelibs >= %{_minlibsevr}
 
 %description -n kde-icons-mono
 KDE Icons Theme - mono.
 
-%description -n kde-icons-mono -l pl
+%description -n kde-icons-mono -l pl.UTF-8
 Motyw ikon dla KDE - mono.
 
 %package kbstateapplet
 Summary:	Keyboard Status Applet
-Summary(pl):	Aplet stanu klawiatury
+Summary(pl.UTF-8):	Aplet stanu klawiatury
 Group:		X11/Applications
 Requires:	kdebase-desktop >= %{_minbaseevr}
 
 %description kbstateapplet
 Keyboard Status Applet.
 
-%description kbstateapplet -l pl
+%description kbstateapplet -l pl.UTF-8
 Aplet stanu klawiatury.
 
 %package kmag
 Summary:	A KDE magnifying tool
-Summary(pl):	Lupa dla ¶rodowiska KDE
+Summary(pl.UTF-8):	Lupa dla Å›rodowiska KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmag
 A KDE magnifying tool.
 
-%description kmag -l pl
-Lupa dla ¶rodowiska KDE.
+%description kmag -l pl.UTF-8
+Lupa dla Å›rodowiska KDE.
 
 %package kmousetool
 Summary:	KMouseTool - a program that clicks the mouse for you
-Summary(pl):	KMouseTool - narzêdzie do klikania myszk± bez naciskania jej przycisków
+Summary(pl.UTF-8):	KMouseTool - narzÄ™dzie do klikania myszkÄ… bez naciskania jej przyciskÃ³w
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -99,17 +99,17 @@ designed to help those with repetitive strain injuries, for whom
 pressing buttons hurts. It can also drag the mouse, although this
 takes a bit more practice.
 
-%description kmousetool -l pl
-KMouseTool jest narzêdziem do klikania myszk± bez naciskania jej
-przycisków. KMouseTool klika myszk± za ka¿dym razem gdy kursor
-zatrzymuje siê na krótko. Narzêdzie to zosta³o zaprojektowane by pomóc
-osobom z uszkodzeniami miê¶ni, dla których naciskanie przycisków jest
-bolesne. Ponadto mo¿e ono przeci±gaæ mysz±, aczkolwiek wymaga to
+%description kmousetool -l pl.UTF-8
+KMouseTool jest narzÄ™dziem do klikania myszkÄ… bez naciskania jej
+przyciskÃ³w. KMouseTool klika myszkÄ… za kaÅ¼dym razem gdy kursor
+zatrzymuje siÄ™ na krÃ³tko. NarzÄ™dzie to zostaÅ‚o zaprojektowane by pomÃ³c
+osobom z uszkodzeniami miÄ™Å›ni, dla ktÃ³rych naciskanie przyciskÃ³w jest
+bolesne. Ponadto moÅ¼e ono przeciÄ…gaÄ‡ myszÄ…, aczkolwiek wymaga to
 pewnej praktyki.
 
 %package kmouth
 Summary:	A frontend for speech synthesizers
-Summary(pl):	Frontend do syntezatorów mowy
+Summary(pl.UTF-8):	Frontend do syntezatorÃ³w mowy
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -122,10 +122,10 @@ sentences to be re-spoken.
 Note that KMouth does not include speech synthesizer. Instead it
 requires a speech synthesizer installed in the system.
 
-%description kmouth -l pl
-KMouth jest frontendem do syntezatorów mowy. Jest to narzêdzie dziêki
-któremu osoby nieme mog± pozwoliæ komputerowi mówiæ za nie. Zawiera on
-historiê wypowiedzianych zdañ, z której to u¿ytkownik mo¿e wybraæ
+%description kmouth -l pl.UTF-8
+KMouth jest frontendem do syntezatorÃ³w mowy. Jest to narzÄ™dzie dziÄ™ki
+ktÃ³remu osoby nieme mogÄ… pozwoliÄ‡ komputerowi mÃ³wiÄ‡ za nie. Zawiera on
+historiÄ™ wypowiedzianych zdaÅ„, z ktÃ³rej to uÅ¼ytkownik moÅ¼e wybraÄ‡
 zdanie do ponownego wypowiedzenia.
 
 UWAGA! KMouth nie zawiera syntezatora mowy. Zamiast tego wykorzystuje
@@ -133,19 +133,19 @@ syntezator zainstalowany w systemie.
 
 %package ksayit
 Summary:	KSayIt - A Text To Speech frontend for KDE
-Summary(pl):	KSayIt - Frontend systemu Tekst-w-Mowê KDE
+Summary(pl.UTF-8):	KSayIt - Frontend systemu Tekst-w-MowÄ™ KDE
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
 %description ksayit
 A Text To Speech frontend for KDE.
 
-%description ksayit -l pl
-Frontend systemu Tekst-w-Mowê KDE.
+%description ksayit -l pl.UTF-8
+Frontend systemu Tekst-w-MowÄ™ KDE.
 
 %package kttsd
 Summary:	KDE Text-to-Speech
-Summary(pl):	KDE Tekst-w-Mowê
+Summary(pl.UTF-8):	KDE Tekst-w-MowÄ™
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kttsd
@@ -156,34 +156,34 @@ for conversion of text to audible speech. KTTS is currently under
 development and aims to become the standard subsystem for all KDE
 applications to provide speech output.
 
-%description kttsd -l pl
-KTTS -- KDE Tekst-w-Mowê -- jest podsystemem ¶rodowiska KDE s³u¿±cym
-do konwersji tekstu w s³yszaln± mowê. KTTS jest ca³y czas rozwijany,
-jego celem jest zostanie standardowym podsystemem dostarczaj±cym
-wyj¶cie mowy dla wszystkich aplikacji KDE.
+%description kttsd -l pl.UTF-8
+KTTS -- KDE Tekst-w-MowÄ™ -- jest podsystemem Å›rodowiska KDE sÅ‚uÅ¼Ä…cym
+do konwersji tekstu w sÅ‚yszalnÄ… mowÄ™. KTTS jest caÅ‚y czas rozwijany,
+jego celem jest zostanie standardowym podsystemem dostarczajÄ…cym
+wyjÅ›cie mowy dla wszystkich aplikacji KDE.
 
 %package kttsd-akode
 Summary:	KTTS AKODE plugin
-Summary(pl):	Wtyczka AKODE dla KTTS
+Summary(pl.UTF-8):	Wtyczka AKODE dla KTTS
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
 %description kttsd-akode
 KTTS AKODE plugin.
 
-%description kttsd-akode -l pl
+%description kttsd-akode -l pl.UTF-8
 Wtyczka AKODE dla KTTS.
 
 %package kttsd-gstreamer
 Summary:	KTTS GStreamer plugin
-Summary(pl):	Wtyczka Gstreamer dla KTTS
+Summary(pl.UTF-8):	Wtyczka Gstreamer dla KTTS
 Group:		X11/Applications
 Requires:	%{name}-kttsd = %{epoch}:%{version}-%{release}
 
 %description kttsd-gstreamer
 KTTS GStreamer plugin.
 
-%description kttsd-gstreamer -l pl
+%description kttsd-gstreamer -l pl.UTF-8
 Wtyczka Gstreamer dla KTTS.
 
 %prep
