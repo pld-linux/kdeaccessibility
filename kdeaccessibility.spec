@@ -281,14 +281,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kmag
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
-%{_iconsdir}/[!l]*/*/apps/kmag.*
+%{_iconsdir}/*/*/apps/kmag.*
 
 %files kmousetool -f kmousetool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmousetool
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
-%{_iconsdir}/[!l]*/*/apps/kmousetool.*
+%{_iconsdir}/*/*/apps/kmousetool.*
 
 %files kmouth -f kmouth.lang
 %defattr(644,root,root,755)
@@ -296,7 +296,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kmouth
 %{_datadir}/config/kmouthrc
 %{_desktopdir}/kde/kmouth.desktop
-%{_iconsdir}/[!l]*/*/apps/kmouth.*
+%{_iconsdir}/*/*/apps/kmouth.*
 
 %files ksayit
 %defattr(644,root,root,755)
