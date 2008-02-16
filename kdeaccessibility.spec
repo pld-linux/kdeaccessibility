@@ -1,4 +1,3 @@
-#
 # TODO:
 # - fix festival and speech_tools
 #
@@ -13,12 +12,12 @@
 Summary:	Accessibility support for KDE
 Summary(pl.UTF-8):	Ułatwienia dostępu dla KDE
 Name:		kdeaccessibility
-Version:	3.5.8
-Release:	1
+Version:	3.5.9
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	0ede2d48df626aa436dbe6c741d575f1
+# Source0-md5:	79c7fa53ec60ad51fbdb16aac56d85a1
 URL:		http://www.kde.org/
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
@@ -228,24 +227,32 @@ cp /usr/share/automake/config.sub admin
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
+	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	%{__make} install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_htmldir=%{_kdedocdir}
+	touch makeinstall.stamp
+fi
 
-install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
+if [ ! -f installed.stamp ]; then
+	install -d $RPM_BUILD_ROOT%{_desktopdir}/kde
+	mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* $RPM_BUILD_ROOT%{_desktopdir}/kde
 
-mv $RPM_BUILD_ROOT%{_datadir}/applnk/Applications/* \
-	$RPM_BUILD_ROOT%{_desktopdir}/kde
+	rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
+	rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libKTTSD_Lib.so
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libkttsd.so
+
+	touch installed.stamp
+fi
 
 %find_lang kmag		--with-kde
 %find_lang kmousetool	--with-kde
 %find_lang kmouth	--with-kde
 %find_lang kttsd	--with-kde
-
-rm -rf $RPM_BUILD_ROOT%{_iconsdir}/locolor
-rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -276,14 +283,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kmag
 %{_datadir}/apps/kmag
 %{_desktopdir}/kde/kmag.desktop
-%{_iconsdir}/[!l]*/*/apps/kmag.*
+%{_iconsdir}/*/*/apps/kmag.*
 
 %files kmousetool -f kmousetool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmousetool
 %{_datadir}/apps/kmousetool
 %{_desktopdir}/kde/kmousetool.desktop
-%{_iconsdir}/[!l]*/*/apps/kmousetool.*
+%{_iconsdir}/*/*/apps/kmousetool.*
 
 %files kmouth -f kmouth.lang
 %defattr(644,root,root,755)
@@ -291,7 +298,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kmouth
 %{_datadir}/config/kmouthrc
 %{_desktopdir}/kde/kmouth.desktop
-%{_iconsdir}/[!l]*/*/apps/kmouth.*
+%{_iconsdir}/*/*/apps/kmouth.*
 
 %files ksayit
 %defattr(644,root,root,755)
@@ -320,7 +327,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkttsd_xmltransformerplugin.so
 %attr(755,root,root) %{_libdir}/kde3/libkttsjobmgrpart.so
 %attr(755,root,root) %{_libdir}/libKTTSD_Lib.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libKTTSD_Lib.so.0
 %attr(755,root,root) %{_libdir}/libkttsd.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkttsd.so.1
 %{_desktopdir}/kde/kcmkttsd.desktop
 %{_desktopdir}/kde/kttsmgr.desktop
 %{_datadir}/apps/ktexteditor_kttsd
