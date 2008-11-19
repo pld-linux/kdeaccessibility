@@ -1,5 +1,6 @@
 # TODO:
 # - fix festival and speech_tools
+# - unpackaged dir: /usr/share/icons/mono/scalable/apps
 #
 # Conditional build:
 %bcond_with	gstreamer	# gstreamer support (needs gstreamer-plugins-devel 0.8)
